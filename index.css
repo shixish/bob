@@ -1,33 +1,46 @@
-body {
-    background-color: #000;
-    color: #fff;
+/*
+ * Neverwell Moor, a fantasy action RPG
+ * Copyright (C) 2012  Jason Oster
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-    /* Allow mouse dragging. */
+body {
+    margin: 0;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-	
-	/* disable touch panning/zooming */
-	-ms-touch-action: none;
-	touch-action: none;
-
-    /* Allow canvas to hit the edges of the browser viewport. */
-    margin: 0;
+    background-color: black;
 }
 
-#screen canvas {
-    margin: auto;
+canvas {
+    vertical-align: top;
+}
 
-    /* Hide the gap for font descenders. */
-    display: block;
-	
-	/* disable scaling interpolation */
-	image-rendering: optimizeSpeed;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: -o-crisp-edges;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: optimize-contrast;
-	-ms-interpolation-mode: nearest-neighbor;
+#screen {
+    position: relative;
+    width: 640px;
+    margin: auto;
+}
+
+#framecounter {
+    position: absolute;
+    right: 0;
+    color: white;
+    font-size: 8pt;
+    font-family: "Courier New";
+    text-shadow: black 1px 1px;
 }

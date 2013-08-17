@@ -1,64 +1,65 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<!--
+Neverwell Moor, a fantasy action RPG
+Copyright (C) 2012  Jason Oster
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <html>
     <head>
-        <title>melonJS Template</title>
+        <title>Neverwell Moor</title>
         <link rel="stylesheet" type="text/css" media="screen" href="index.css">
-        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
     </head>
     <body>
-        <!-- Canvas placeholder -->
-		<div id="screen"></div>
-        
-		<!-- melonJS Library -->
-		<script type="text/javascript" src="lib/melonJS-0.9.8-min.js"></script>
-        
-		<!-- Plugin(s) -->
-		<script type="text/javascript" src="lib/plugins/debugPanel.js"></script>
-		
-		<!-- Game Scripts -->
-        <script type="text/javascript" src="js/game.js"></script>
-        <script type="text/javascript" src="js/resources.js"></script>
-		
-		<script type="text/javascript" src="js/entities/entities.js"></script>
+        <div id="screen">
+            <span id="framecounter">(0/0 fps)</span>
+            <script type="text/javascript" src="lib/melonJS-0.9.5.js"></script>
+            <script type="text/javascript" src="lib/cp.js"></script>
+            <script type="text/javascript" src="lib/cm.js"></script>
 
-        <script type="text/javascript" src="js/screens/title.js"></script>
-        <script type="text/javascript" src="js/screens/play.js"></script>
-		
-		<!-- Bootstrap & Mobile optimization tricks -->
-		<script type="text/javascript">
-			window.onReady(function onReady() {
-				game.onload();
+            <script type="text/javascript" src="js/config.js"></script>
+            <script type="text/javascript" src="js/game.js"></script>
+            <script type="text/javascript" src="js/stat.js"></script>
+            <script type="text/javascript" src="js/notify.js"></script>
 
-				// Mobile browser hacks
-				if (me.sys.isMobile && !navigator.isCocoonJS) {
-					// Prevent the webview from moving on a swipe
-					window.document.addEventListener("touchmove", function (e) {
-						e.preventDefault();
-						window.scroll(0, 0);
-						return false;
-					}, false);
+            <script type="text/javascript" src="js/objects/sprite.js"></script>
 
-					// Scroll away mobile GUI
-					(function () {
-						window.scrollTo(0, 1);
-						me.video.onresize(null);
-					}).defer();
+            <script type="text/javascript" src="js/objects/dialog.js"></script>
+            <script type="text/javascript" src="js/objects/eyes.js"></script>
+            <script type="text/javascript" src="js/objects/exit.js"></script>
+            <script type="text/javascript" src="js/objects/gui.js"></script>
+            <script type="text/javascript" src="js/objects/npc.js"></script>
+            <script type="text/javascript" src="js/objects/screens.js"></script>
+            <script type="text/javascript" src="js/objects/shadow.js"></script>
+            <script type="text/javascript" src="js/objects/static.js"></script>
 
-					me.event.subscribe(me.event.WINDOW_ONRESIZE, function (e) {
-						window.scrollTo(0, 1);
-					})
+            <script type="text/javascript" src="js/entities/baddies.js"></script>
+            <script type="text/javascript" src="js/entities/chest.js"></script>
+            <script type="text/javascript" src="js/entities/coin.js"></script>
+            <script type="text/javascript" src="js/entities/item.js"></script>
+            <script type="text/javascript" src="js/entities/npc.js"></script>
+            <script type="text/javascript" src="js/entities/rachel.js"></script>
+            <script type="text/javascript" src="js/entities/weapon.js"></script>
 
-					// Retina viewport settings
-					if (window.devicePixelRatio > 1) {
-						document.getElementById("viewport").setAttribute(
-							"content",
-							"width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0"
-						);
-					}
-				}
-			});
-		</script>
+            <script type="text/javascript" src="js/resources.js"></script>
+
+            <script type="text/javascript">
+                /* Bootstrap */
+                window.onReady(function onReady() {
+                    game.onload();
+                });
+            </script>
+        </div>
     </body>
 </html>
