@@ -54,7 +54,7 @@ game.Player = me.ObjectEntity.extend({
 		
 		var self = this;
 		me.event.subscribe("/mouse/right", function(e){
-			self.target = {x:e.gameX, y:e.gameY};
+			self.target = {x:e.gameX-16, y:e.gameY-36};
 		});
 		
 		me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
