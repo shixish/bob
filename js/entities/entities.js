@@ -38,6 +38,7 @@ game.Player = me.ObjectEntity.extend({
 		this.direction = 'down';
 		
 		this.alwaysUpdate = true;
+		this.collidable = true;
     // adjust the bounding box
     //this.updateColRect(8, 48, -1, 0);
 		
