@@ -51,9 +51,6 @@ var game = {
         me.input.bindKey(c.KEY_APOS,            "attack", true);
         me.input.bindKey(me.input.KEY.ESC,      "skip", true);
         
-        //me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
-        //me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
-        
         var canvas = me.video.getScreenCanvas();
         canvas.addEventListener('contextmenu', function(e){
             e.preventDefault();
@@ -65,20 +62,6 @@ var game = {
 
         // Initialize melonJS and display a loading screen.
         me.state.change(me.state.LOADING);
-    },
-    
-    mouseDown: function(e){
-        if (e.button == 0) {//left
-            //console.log('left mouseDown', e);
-            me.event.publish("/mouse/left", [e]);
-        }else if (e.button == 2) {//right
-            //console.log('right mouseDown', e);
-            me.event.publish("/mouse/right", [e]);
-        }
-    },
-    
-    mouseMove: function(e){
-        //console.log('mouseMove', e);
     },
 
     "loadResources" : function loadResources() {
@@ -159,8 +142,25 @@ var game = {
         // Static objects.
         me.entityPool.add("exit", game.Exit);
         me.entityPool.add("static", game.Static);
-
+        
+        me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
+        me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
+        
         me.state.change(me.state.PLAY);       
+    },
+    
+    "mouseDown": function(e){
+        if (e.button == 0) {//left
+            //console.log('left mouseDown', e);
+            me.event.publish("/mouse/left", [e]);
+        }else if (e.button == 2) {//right
+            //console.log('right mouseDown', e);
+            me.event.publish("/mouse/right", [e]);
+        }
+    },
+    
+    "mouseMove": function(e){
+        //console.log('mouseMove', e);
     },
 
     // Helper function to determine if a variable is an Object.
