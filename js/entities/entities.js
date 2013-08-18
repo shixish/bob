@@ -36,6 +36,8 @@ game.Player = me.ObjectEntity.extend({
 		this.gravity = 0;
 		this.target = {x:this.pos.x, y:this.pos.y};
 		this.direction = 'down';
+		
+		this.alwaysUpdate = true;
     // adjust the bounding box
     //this.updateColRect(8, 48, -1, 0);
 		

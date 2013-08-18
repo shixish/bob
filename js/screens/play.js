@@ -9,6 +9,7 @@ game.PlayScreen = me.ScreenObject.extend( {
 		me.levelDirector.loadLevel("earth");// load a level
 	},
 	update: function(){
+		//console.log(this, game);
 		if (me.input.isKeyPressed('left')){
 			me.game.viewport.pos.x -= 15;
 		}else if (me.input.isKeyPressed('right')){
