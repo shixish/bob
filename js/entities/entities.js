@@ -4,8 +4,8 @@
  */
  
 // unit selecter
-game.squad = me.Entity.extend({
-	var units = [];
+game.squad = me.ObjectEntity.extend({
+	
 });
 
 // test unit
