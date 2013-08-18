@@ -51,8 +51,8 @@ var game = {
         me.input.bindKey(c.KEY_APOS,            "attack", true);
         me.input.bindKey(me.input.KEY.ESC,      "skip", true);
         
-        //me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
-        //me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
+        me.input.registerMouseEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
+        me.input.registerMouseEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
 
         // Set a callback to run when loading is complete.
         me.loader.onload = this.loaded.bind(this);
