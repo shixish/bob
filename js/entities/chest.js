@@ -89,7 +89,7 @@ game.ChestEntity = game.Sprite.extend({
         // Keep this chest open.
         game.stat.save(this.stat_key, true);
 
-        me.audio.play("chests");
+        //me.audio.play("chests");
         this.actor = actor;
         this.callback = callback;
         this.animationpause = false;

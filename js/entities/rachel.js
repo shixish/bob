@@ -53,20 +53,36 @@ game.RachelEntity = game.NPC.extend({
             shape.collision_type = c.COLLIDE_PLAYER;
             shape.setLayers(c.LAYER_NO_COIN | c.LAYER_NO_NPC | c.LAYER_NO_CHEST | c.LAYER_EXIT | c.LAYER_LIVING);
         });
-
+        
+        //me.event.subscribe("/mouse/left", function(e){
+        //    console.log('rachel left click');
+        //});
+        var self = this;
+        me.event.subscribe("/mouse/right", function(e){
+            console.log('rachel right click', e);
+            //var pos = me.input.globalToLocal(e.clientX, e.clientY);
+            // Move body and detect collisions.
+            var force = {
+                "x" : 0,
+                "y" : 5
+            };
+            self.body.applyForce(cp.v(force.x * self.forceConstant, force.y * -self.forceConstant), cp.vzero);
+            console.log('self.body: ', self.body);
+        });
+        
         // Set the display to follow our position on both axis.
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
 
     "hit" : function hit(power) {
-        me.audio.play("hurt");
+        //me.audio.play("hurt");
 
         this.hearts -= power;
         game.HUD.HUDItems.hearts.update(-power);
         if (game.HUD.HUDItems.hearts.value <= 0) {
             // Dead.
-            me.audio.stopTrack();
-            me.audio.play("dying");
+            //me.audio.stopTrack();
+            //me.audio.play("dying");
 
             game.modal = true;
 

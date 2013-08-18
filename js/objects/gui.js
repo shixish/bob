@@ -80,11 +80,11 @@ game.installHUD = function HUD() {
 
             // Back-buffer and mask for the inset shadow effect.
             // Note we only need to use one font, because the only difference is color.
-            this.backbuffer = bufferForFont(me.video.getScreenFrameBuffer(), this.gold_font);
-            this.backmask   = bufferForFont(me.video.getScreenFrameBuffer(), this.gold_font);
+            this.backbuffer = bufferForFont(me.video.getSystemContext(), this.gold_font);
+            this.backmask   = bufferForFont(me.video.getSystemContext(), this.gold_font);
 
             // Create a cache for the coin counter, so we don't redraw it unnecessarily.
-            this.cache      = bufferForFont(me.video.getScreenFrameBuffer(), this.gold_font);
+            this.cache      = bufferForFont(me.video.getSystemContext(), this.gold_font);
             this.preValue   = NaN;
 
             this.value = game.stat.load("coins") || 0;
@@ -97,14 +97,14 @@ game.installHUD = function HUD() {
 
             if (value > 0) {
                 me.event.publish("collect coin", [ value ]);
-                me.audio.play("collect_coin");
+                //me.audio.play("collect_coin");
             }
             else {
                 me.event.publish("spend coin", [ -value ]);
                 // Play thee sounds quickly in series.
-                me.audio.play("collect_coin");
-                setTimeout(function timeout() { me.audio.play("collect_coin") }, 200);
-                setTimeout(function timeout() { me.audio.play("collect_coin") }, 400);
+                //me.audio.play("collect_coin");
+                //setTimeout(function timeout() { me.audio.play("collect_coin") }, 200);
+                //setTimeout(function timeout() { me.audio.play("collect_coin") }, 400);
             }
         },
 
@@ -335,7 +335,7 @@ game.installHUD = function HUD() {
             this.updated = true;
             this.weapon = item;
 
-            me.audio.play("fanfare");
+            //me.audio.play("fanfare");
             me.event.publish("acquire weapon", [ item.name ]);
             game.dialog([ item.description ]);
 
@@ -359,7 +359,7 @@ game.installHUD = function HUD() {
                 return;
             }
 
-            me.audio.play("fanfare");
+            //me.audio.play("fanfare");
             me.event.publish("acquire item", [ item.name ]);
             game.dialog([ item.description ]);
 

@@ -191,8 +191,8 @@ game.PlayScreen = game.AnimatedScreen.extend({
         }
 
         if (settings.music) {
-            me.audio.stopTrack();
-            me.audio.playTrack(settings.music);
+            //me.audio.stopTrack();
+            //me.audio.playTrack(settings.music);
         }
     },
 

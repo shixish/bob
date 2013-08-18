@@ -33,7 +33,7 @@ var game = {
         }
 
         // Initialize the audio.
-        me.audio.init("mp3,ogg");
+        //me.audio.init("mp3,ogg");
 
         // Key bindings.
         me.input.bindKey(me.input.KEY.UP,       "up");
@@ -51,15 +51,14 @@ var game = {
         me.input.bindKey(c.KEY_APOS,            "attack", true);
         me.input.bindKey(me.input.KEY.ESC,      "skip", true);
         
-        me.input.registerMouseEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
-        me.input.registerMouseEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
+        //me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
+        //me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
         
         var canvas = me.video.getScreenCanvas();
         canvas.addEventListener('contextmenu', function(e){
             e.preventDefault();
         });
         
-
         // Set a callback to run when loading is complete.
         me.loader.onload = this.loaded.bind(this);
         this.loadResources();
@@ -70,11 +69,11 @@ var game = {
     
     mouseDown: function(e){
         if (e.button == 0) {//left
-            console.log('left mouseDown', e);
-            me.event.publish("left-click", []);
+            //console.log('left mouseDown', e);
+            me.event.publish("/mouse/left", [e]);
         }else if (e.button == 2) {//right
-            console.log('right mouseDown', e);
-            me.event.publish("right-click", []);
+            //console.log('right mouseDown', e);
+            me.event.publish("/mouse/right", [e]);
         }
     },
     
@@ -104,25 +103,25 @@ var game = {
             })
         });
 
-        // Sound effects.
-        this.resources["sfx"].forEach(function forEach(value) {
-            resources.push({
-                "name"      : value,
-                "type"      : "audio",
-                "src"       : "resources/sfx/",
-                "channel"   : 1
-            })
-        });
-
-        // Music.
-        this.resources["bgm"].forEach(function forEach(value) {
-            resources.push({
-                "name"      : value,
-                "type"      : "audio",
-                "src"       : "resources/bgm/",
-                "channel"   : 2
-            })
-        });
+        //// Sound effects.
+        //this.resources["sfx"].forEach(function forEach(value) {
+        //    resources.push({
+        //        "name"      : value,
+        //        "type"      : "audio",
+        //        "src"       : "resources/sfx/",
+        //        "channel"   : 1
+        //    })
+        //});
+        //
+        //// Music.
+        //this.resources["bgm"].forEach(function forEach(value) {
+        //    resources.push({
+        //        "name"      : value,
+        //        "type"      : "audio",
+        //        "src"       : "resources/bgm/",
+        //        "channel"   : 2
+        //    })
+        //});
 
         // Load the resources.
         me.loader.preload(resources);

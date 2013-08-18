@@ -120,14 +120,14 @@ game.NPC = game.Sprite.extend({
     "hit" : function hit(power) {
         var coin;
         var self = this;
-        me.audio.play("hurt");
+        //me.audio.play("hurt");
 
         // FIXME: "pain" sound.
 
         self.hearts -= power;
         if (self.hearts <= 0) {
             // Dead.
-            me.audio.play("dying");
+            //me.audio.play("dying");
 
             me.game.remove(self, true);
             cm.remove(self.body);

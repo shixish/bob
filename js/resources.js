@@ -106,19 +106,19 @@ game.resources = {
         "shed"
     ],
 
-    /* 1-channel audio. Usually sound effects. */
-    "sfx" : [
-        "chests",
-        "collect_coin",
-        "dying",
-        "fanfare",
-        "hurt",
-        "mallet_swing",
-        "mallet_whomp"
-    ],
-
-    /* 2-channel audio. Usually music. */
-    "bgm" : [
-        "zombie_snare"        
-    ]
+    ///* 1-channel audio. Usually sound effects. */
+    //"sfx" : [
+    //    "chests",
+    //    "collect_coin",
+    //    "dying",
+    //    "fanfare",
+    //    "hurt",
+    //    "mallet_swing",
+    //    "mallet_whomp"
+    //],
+    //
+    ///* 2-channel audio. Usually music. */
+    //"bgm" : [
+    //    "zombie_snare"        
+    //]
 };

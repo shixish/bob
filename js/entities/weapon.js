@@ -154,7 +154,7 @@ game.Weapon = me.AnimationSheet.extend({
 
             // Play a random swing sound effect.
             var len = self.settings.sfx_swing.length - 1;
-            me.audio.play(self.settings.sfx_swing[Number.prototype.random(0, len)]);
+            //me.audio.play(self.settings.sfx_swing[Number.prototype.random(0, len)]);
 
             // Make owner stand still.
             self.owner.stand();
@@ -163,7 +163,7 @@ game.Weapon = me.AnimationSheet.extend({
             self.setCurrentAnimation("swing_" + self.dir, function animationComplete() {
                 // Play a random sound effect.
                 var len = self.settings.sfx_whomp.length - 1;
-                me.audio.play(self.settings.sfx_whomp[Number.prototype.random(0, len)]);
+                //me.audio.play(self.settings.sfx_whomp[Number.prototype.random(0, len)]);
 
                 if (!game.stat.load("tutorial6")) {
                     me.event.publish("notify", [ "MOG! This mallet is amerzing!! I should probably be careful where I swing it..." ]);

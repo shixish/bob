@@ -59,7 +59,7 @@ game.installExitHandler = function installExitHandler() {
 }
 
 /* Exits link maps together. */
-game.Exit = me.InvisibleEntity.extend({
+game.Exit = me.ObjectEntity.extend({
     "init" : function init(x, y, settings) {
         this.parent(x, y, settings);
 
