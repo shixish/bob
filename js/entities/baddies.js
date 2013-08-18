@@ -60,7 +60,7 @@ game.BaddieEntities = {
             this.power = 0.5;
             this.hearts = 1;
             this.value = 50;
-            this.velocity = 1;
+            this.velocity = 1.2;
 
             this.parent(x, y, settings);
 

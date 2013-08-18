@@ -33,7 +33,7 @@ var game = {
         }
 
         // Initialize the audio.
-        me.audio.init("ogg");
+        me.audio.init("mp3,ogg");
 
         // Key bindings.
         me.input.bindKey(me.input.KEY.UP,       "up");
@@ -124,30 +124,7 @@ var game = {
         // Set the "Play" ScreenObject.
         game.play = new game.PlayScreen(20);
         me.state.set(me.state.PLAY, game.play);
-
-        // Set the TitleScreen ScreenObject.
-        me.state.set(me.state.MENU, new game.TitleScreen());
-
-        // Set the Story ScreenObject.
-        me.state.set(c.STATE_INTRO, new game.InfoScreen(
-            game.story.intro,
-            me.state.PLAY,
-            "black",
-            1000,
-            true
-        ));
-
-        // Set the GameOver ScreenObject.
-        me.state.set(me.state.GAMEOVER, new game.InfoScreen(
-            game.story.gameover,
-            me.state.PLAY,
-            "black",
-            1000
-        ));
-
-        // Set the Credits ScreenObject.
-        me.state.set(me.state.CREDITS, new game.CreditsScreen());
-
+            
         // Player entity.
         me.entityPool.add("rachel", game.RachelEntity);
 
@@ -172,18 +149,7 @@ var game = {
         me.entityPool.add("exit", game.Exit);
         me.entityPool.add("static", game.Static);
 
-        if (c.DEBUG) {
-            me.state.change(me.state.PLAY);
-        }
-        // Display warning if audio is not available.
-        else if (!me.audio.isAudioEnable()) {
-            me.state.set(c.STATE_INFO, new game.InfoScreen(game.info.audio_error));
-            me.state.change(c.STATE_INFO);
-        }
-        else {
-            // Start the game.
-            me.state.change(me.state.MENU);
-        }
+        me.state.change(me.state.PLAY);       
     },
 
     // Helper function to determine if a variable is an Object.

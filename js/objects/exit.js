@@ -25,7 +25,7 @@ game.installExitHandler = function installExitHandler() {
         cm.getSpace().addCollisionHandler(
             c.COLLIDE_PLAYER,
             c.COLLIDE_EXIT,
-            function exit_level(arbiter, space) {
+            function exit_level(arbiter, space) {                
                 space.addPostStepCallback(function onPostSteppCallback() {
                     // HACKKKKKK!!!!! :(
                     if (arbiter.b.data.state) {

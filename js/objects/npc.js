@@ -244,7 +244,7 @@ game.NPC = game.Sprite.extend({
             var max = self.maxDistance * 2;
             var hMax = self.maxDistance;
 
-            self.destination.x = x + ~~(Math.random() * max - hMax);
+            self.destination.x = x + ~~(Math.random() * max - hMax); //WTF?!
             self.destination.y = y + ~~(Math.random() * max - hMax);
         }
 
