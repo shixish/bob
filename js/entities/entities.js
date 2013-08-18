@@ -56,13 +56,23 @@ game.Player = me.ObjectEntity.extend({
 		me.event.subscribe("/mouse/right", function(e){
 			self.target = {x:e.gameX, y:e.gameY};
 		});
+		
+		me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
   },
+	mouseDown: function(e){
+		if (e.button == 0)//left click
+			console.log('select me!');
+	},
 	update : function(){
 		var dist_x = this.target.x - this.pos.x, dist_y = this.target.y - this.pos.y;
+		var abs_dist_x = Math.abs(dist_x), abs_dist_y = Math.abs(dist_y);
 		if (dist_x == 0 && dist_y == 0) {
 			return false;
 		}
-		if (Math.abs(dist_x) > 1) {
+		
+		
+		
+		if (abs_dist_x > 0 && abs_dist_x > abs_dist_y) {
 			if (dist_x > 0)
 				this.direction = 'right';
 			else
@@ -70,7 +80,7 @@ game.Player = me.ObjectEntity.extend({
 			this.renderable.setCurrentAnimation("walk_"+this.direction);
 			this.vel.x = dist_x;
 			this.vel.y = 0;
-		}else if (Math.abs(dist_y) > 1) {
+		}else if (abs_dist_y > 0){
 			if (dist_y > 0)
 				this.direction = 'down';
 			else
