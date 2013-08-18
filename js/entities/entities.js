@@ -148,6 +148,11 @@ game.Player = me.ObjectEntity.extend({
 		this.vel.y = dist_y;
 		
 		this.updateMovement();
+		this.parent();
+		
+		// check for collision
+    var res = me.game.collide(this);
+		//console.log('res: ', res);
 		return true;
 	},
 });
