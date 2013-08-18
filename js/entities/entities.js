@@ -31,10 +31,13 @@ game.Player = me.ObjectEntity.extend({
     // call the constructor
     this.parent(x, y, settings);
     // set the default horizontal & vertical speed (accel vector)
-    this.setMaxVelocity(3, 3);
+		this.maxSpeed = 3;
+    this.setMaxVelocity(this.maxSpeed, this.maxSpeed);
 		this.gravity = 0;
 		this.target = {x:this.pos.x, y:this.pos.y};
 		this.direction = 'down';
+		
+		this.alwaysUpdate = true;
     // adjust the bounding box
     //this.updateColRect(-1, x, -1, y);
 		
@@ -51,11 +54,13 @@ game.Player = me.ObjectEntity.extend({
 		this.renderable.addAnimation("stand_right", [ 3 ]);
 		
 		this.renderable.setCurrentAnimation("walk_right");
-		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		//me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		me.game.viewport.pos.x = this.pos.x - me.game.viewport.hWidth;
+		me.game.viewport.pos.y = this.pos.y - me.game.viewport.hHeight;
 		
 		var self = this;
 		me.event.subscribe("/mouse/right", function(e){
-			self.target = {x:e.gameX, y:e.gameY};
+			self.target = new me.Vector2d(e.gameX-16, e.gameY-36);
 		});
 		
 		me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
@@ -68,13 +73,19 @@ game.Player = me.ObjectEntity.extend({
 			
 	},
 	update : function(){
+		//console.log('me.timer.tick: ', me.timer.tick);
+		//var redraw = false;
+		//if (me.input.isKeyPressed('action')){
+		//	me.game.viewport.pos.x = this.pos.x - me.game.viewport.hWidth;
+		//	me.game.viewport.pos.y = this.pos.y - me.game.viewport.hHeight;
+		//	redraw = true;
+		//}
+		
 		var dist_x = this.target.x - this.pos.x, dist_y = this.target.y - this.pos.y;
 		var abs_dist_x = Math.abs(dist_x), abs_dist_y = Math.abs(dist_y);
 		if (dist_x == 0 && dist_y == 0) {
 			return false;
 		}
-		
-		
 		
 		if (abs_dist_x > 0 && abs_dist_x > abs_dist_y) {
 			if (dist_x > 0)
@@ -82,25 +93,22 @@ game.Player = me.ObjectEntity.extend({
 			else
 				this.direction = 'left';
 			this.renderable.setCurrentAnimation("walk_"+this.direction);
-			this.vel.x = dist_x;
-			this.vel.y = 0;
 		}else if (abs_dist_y > 0){
 			if (dist_y > 0)
 				this.direction = 'down';
 			else
 				this.direction = 'up';
 			this.renderable.setCurrentAnimation("walk_"+this.direction);
-			this.vel.y = dist_y;
-			this.vel.x = 0;
 		}else{
 			this.renderable.setCurrentAnimation("stand_"+this.direction);
-			this.vel.y = 0;
-			this.vel.x = 0;
 		}
 		
+		this.vel.x = dist_x;
+		this.vel.y = dist_y;
+		
 		this.updateMovement();
-		return this.parent();
-	}
+		return true;
+	},
 });
 
 // test unit

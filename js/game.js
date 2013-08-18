@@ -11,10 +11,7 @@ var game = {
     // Initialize the audio.
     me.audio.init("mp3,ogg");
     
-    var canvas = me.video.getScreenCanvas();
-    canvas.addEventListener('contextmenu', function(e){
-      e.preventDefault();
-    });
+    me.sys.gravity = 0;
     
     // Set a callback to run when loading is complete.
     me.loader.onload = this.loaded.bind(this);
@@ -29,7 +26,7 @@ var game = {
 	// Run on game resources loaded.
   "loaded" : function () {
     //me.state.set(me.state.MENU, new game.TitleScreen());
-    me.state.set(me.state.PLAY, new game.PlayScreen());
+    me.state.set(me.state.PLAY, new game.PlayScreen(true));
     
     // add our player entity in the entity pool
     me.entityPool.add("Player", game.Player);
@@ -52,6 +49,15 @@ var game = {
     me.input.bindKey(me.input.KEY.SHIFT,    "shift");
     me.input.bindKey(me.input.KEY.Z,        "attack", true);
     me.input.bindKey(me.input.KEY.ESC,      "skip", true);
+    
+    var canvas = me.video.getScreenCanvas();
+    //canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+    //if (canvas.requestPointerLock) {//safari doesn't have it.
+    //  canvas.requestPointerLock();
+    //}
+    canvas.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+    });
     
     me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
     //me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
