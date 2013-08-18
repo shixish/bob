@@ -1,4 +1,4 @@
-var width = 500, height = 500;
+var width = 800, height = 600;
 var game = {
 	// Run on page load.
 	"onload" : function () {
@@ -32,11 +32,12 @@ var game = {
     me.state.set(me.state.PLAY, new game.PlayScreen());
     
     // add our player entity in the entity pool
-    me.entityPool.add("mainPlayer", game.PlayerEntity);
-    // add our object entities in the entity pool
-    me.entityPool.add("mainPlayer", game.PlayerEntity);
-    me.entityPool.add("CoinEntity", game.CoinEntity);
-    me.entityPool.add("EnemyEntity", game.EnemyEntity);
+    me.entityPool.add("Player", game.Player);
+    me.entityPool.add("StartLocation", game.StartLocation);
+    //// add our object entities in the entity pool
+    //me.entityPool.add("mainPlayer", game.PlayerEntity);
+    //me.entityPool.add("CoinEntity", game.CoinEntity);
+    //me.entityPool.add("EnemyEntity", game.EnemyEntity);
     
     // Key bindings.
     me.input.bindKey(me.input.KEY.UP,       "up");
@@ -60,7 +61,13 @@ var game = {
     me.state.change(me.state.PLAY);
   },
   "mouseDown": function(e){
-    console.log('mouseDown', e);
+    if (e.button == 0) {//left
+      //console.log('left mouseDown', e);
+      me.event.publish("/mouse/left", [e]);
+    }else if (e.button == 2) {//right
+      //console.log('right mouseDown', e);
+      me.event.publish("/mouse/right", [e]);
+    }
   },
   "mouseMove": function(e){
     console.log('mouseMove', e);
