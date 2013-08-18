@@ -153,7 +153,7 @@ game.RachelEntity = game.NPC.extend({
             velocity *= 2;
             self.animationspeed = 3;
         }
-
+        
         // Walking controls.
         c.DIR_NAMES.forEach(function forEach(dir_name, i) {
             if (me.input.isKeyPressed(dir_name)) {

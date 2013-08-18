@@ -68,7 +68,13 @@ var game = {
     },
     
     mouseDown: function(e){
-        console.log('mouseDown', e);
+        if (e.button == 0) {//left
+            console.log('left mouseDown', e);
+            me.event.publish("left-click", []);
+        }else if (e.button == 2) {//right
+            console.log('right mouseDown', e);
+            me.event.publish("right-click", []);
+        }
     },
     
     mouseMove: function(e){
