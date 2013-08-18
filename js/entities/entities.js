@@ -36,8 +36,9 @@ game.Player = me.ObjectEntity.extend({
 		this.target = {x:this.pos.x, y:this.pos.y};
 		this.direction = 'down';
     // adjust the bounding box
-    //this.updateColRect(8, 48, -1, 0);
+    //this.updateColRect(-1, x, -1, y);
 		
+			
 		// Set animations.
 		this.renderable.addAnimation("walk_down",   [ 0, 4,  8, 12 ]);
 		this.renderable.addAnimation("walk_left",   [ 1, 5,  9, 13 ]);
@@ -58,10 +59,13 @@ game.Player = me.ObjectEntity.extend({
 		});
 		
 		me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
-  },
+  },  
+	
+	
 	mouseDown: function(e){
 		if (e.button == 0)//left click
-			console.log('select me!');
+			console.log('select me!');			
+			
 	},
 	update : function(){
 		var dist_x = this.target.x - this.pos.x, dist_y = this.target.y - this.pos.y;
