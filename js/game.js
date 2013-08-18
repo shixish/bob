@@ -1,4 +1,4 @@
-var width = 300, height = 300;
+var width = 500, height = 500;
 var game = {
 	// Run on page load.
 	"onload" : function () {
