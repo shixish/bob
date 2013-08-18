@@ -25,10 +25,24 @@ var game = {
     me.input.bindKey(me.input.KEY.SHIFT,    "shift");
     me.input.bindKey(me.input.KEY.Z,        "attack", true);
     me.input.bindKey(me.input.KEY.ESC,      "skip", true);
+    
+    var canvas = me.video.getScreenCanvas();
+    canvas.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+    });
+    
+    // Set a callback to run when loading is complete.
+    me.loader.onload = this.loaded.bind(this);
+   
+    // Load the resources.
+    me.loader.preload(game.resources);
+
+    // Initialize melonJS and display a loading screen.
+    me.state.change(me.state.LOADING);
 	},
 	// Run when loaded.
 	"loaded" : function () {
-    
+    console.log('loaded');
 	},
   "loadResources" : function loadResources() {
     // Set all resources to be loaded.
