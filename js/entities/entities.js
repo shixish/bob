@@ -2,11 +2,6 @@
  * all game entities here (or break up to more files for
  * organization)
  */
- 
-// unit selector
-game.squad = me.ObjectEntity.extend({
-	
-});
 
 // test unit
 //game.Player = me.ObjectEntity.extend({
@@ -39,10 +34,11 @@ game.Player = me.ObjectEntity.extend({
 		
 		this.alwaysUpdate = true;
 		this.collidable = true;
+
     // adjust the bounding box
     //this.updateColRect(-1, x, -1, y);
 	
-	var isSelected=false;	
+        this.isSelected=false;	
 			
 		// Set animations.
 		this.renderable.addAnimation("walk_down",   [ 0, 8,  16, 24 ]);
@@ -70,25 +66,32 @@ game.Player = me.ObjectEntity.extend({
 		me.game.viewport.pos.x = this.pos.x - me.game.viewport.hWidth;
 		me.game.viewport.pos.y = this.pos.y - me.game.viewport.hHeight;
 		
-		var self = this;
-		me.event.subscribe("/mouse/right", function(e){
+
+		/*me.event.subscribe("/mouse/right", function(e){
 			self.target = new me.Vector2d(e.gameX-16, e.gameY-36);
-		});
-		
-		me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
-  },  
-	
-	
-	mouseDown: function(e){
-		if (e.button == 0)//left click
-		{
-			console.log('select me!');
-			this.renderable.setCurrentAnimation("stand_down_select");
-			isSelected=true;
-		}
-		
-		
-	},
+		});*/
+        var self = this;
+        allUnits.push(self);
+		//me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
+  },
+    /* TODO merge this functionality
+     mouseDown: function(e){
+     if (e.button == 0)//left click
+     {
+     console.log('select me!');
+     this.renderable.setCurrentAnimation("stand_down_select");
+     isSelected=true;
+     }
+     },
+     */
+
+
+    move: function(destX, destY) {
+        var self = this;
+        self.target = new me.Vector2d(destX-16, destY-36);
+    },
+
+
 	update : function(){
 		//console.log('me.timer.tick: ', me.timer.tick);
 		//var redraw = false;
@@ -142,8 +145,6 @@ game.Player = me.ObjectEntity.extend({
 			this.renderable.setCurrentAnimation("stand_"+this.direction+"_select");
 		}
 		
-		
-		
 		this.vel.x = dist_x;
 		this.vel.y = dist_y;
 		
@@ -154,7 +155,7 @@ game.Player = me.ObjectEntity.extend({
     var res = me.game.collide(this);
 		//console.log('res: ', res);
 		return true;
-	},
+	}
 });
 
 // test unit
@@ -187,7 +188,7 @@ game.Zombie = me.ObjectEntity.extend({
     //this.updateColRect(8, 48, -1, 0);
     // set the display to follow our position on both axis
     //me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
-  },
+  }
 	 
 	/* 
 	 * update position
