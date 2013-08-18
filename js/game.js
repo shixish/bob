@@ -50,6 +50,9 @@ var game = {
         me.input.bindKey(me.input.KEY.Z,        "attack", true);
         me.input.bindKey(c.KEY_APOS,            "attack", true);
         me.input.bindKey(me.input.KEY.ESC,      "skip", true);
+        
+        me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
+        me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
 
         // Set a callback to run when loading is complete.
         me.loader.onload = this.loaded.bind(this);
@@ -57,6 +60,14 @@ var game = {
 
         // Initialize melonJS and display a loading screen.
         me.state.change(me.state.LOADING);
+    },
+    
+    mouseDown: function(e){
+        console.log('mouseDown', e);
+    },
+    
+    mouseMove: function(e){
+        //console.log('mouseMove', e);
     },
 
     "loadResources" : function loadResources() {
