@@ -1,3 +1,9 @@
+// global vars for selection management
+var allUnits = [];
+var selectedUnits = [];
+var downPos = null;
+var upPos = null;
+
 var width = 800, height = 600;
 var game = {
 	// Run on page load.
@@ -60,6 +66,7 @@ var game = {
     });
     
     me.input.registerPointerEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
+    me.input.registerPointerEvent('mouseup', me.game.viewport, this.mouseUp.bind(this));
     //me.input.registerPointerEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
 
     // Start the game.
@@ -68,15 +75,42 @@ var game = {
   "mouseDown": function(e){
     if (e.button == 0) {//left
       //console.log('left mouseDown', e);
-      me.event.publish("/mouse/left", [e]);
-    }else if (e.button == 2) {//right
+      //me.event.publish("/mouse/left/down", [e]);
+
+      //console.log(e);
+      selectedUnits = [];
+      downPos = {X: e.gameX, Y: e.gameY};
+
+    } else if (e.button == 2) {//right
       //console.log('right mouseDown', e);
-      me.event.publish("/mouse/right", [e]);
+      //me.event.publish("/mouse/right", [e]);
+      //console.log(e);
+      for(var i=0; i<selectedUnits.length; i++)
+      {
+          selectedUnits[i].move(e.gameX, e.gameY);
+      }
     }
   },
-  "mouseMove": function(e){
-    console.log('mouseMove', e);
+  "mouseUp": function(e) {
+      if (e.button == 0) { //left
+          //me.event.publish("/mouse/left/up")
+          //console.log(e);
+          upPos = {X: e.gameX, Y: e.gameY};
+          for(var i=0; i<allUnits.length; i++)
+          {
+              //console.log(e);
+              if(allUnits[i].pos.x < Math.max(downPos.X, upPos.X) &&
+                  allUnits[i].pos.x > Math.min(downPos.X, upPos.X) &&
+                  allUnits[i].pos.y < Math.max(downPos.Y, upPos.Y) &&
+                  allUnits[i].pos.y > Math.min(downPos.Y, upPos.Y))
+              {selectedUnits.push(allUnits[i])}
+          }
+          console.log(selectedUnits);
+      }
   },
+  //"mouseMove": function(e){
+    //console.log('mouseMove', e);
+  //},
   "loadResources" : function loadResources() {
     // Set all resources to be loaded.
     var resources = [];
@@ -103,4 +137,4 @@ var game = {
     me.loader.preload(resources);
     
   }
-}
+};

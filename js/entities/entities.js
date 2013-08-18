@@ -2,11 +2,6 @@
  * all game entities here (or break up to more files for
  * organization)
  */
- 
-// unit selector
-game.squad = me.ObjectEntity.extend({
-	
-});
 
 // test unit
 //game.Player = me.ObjectEntity.extend({
@@ -39,6 +34,7 @@ game.Player = me.ObjectEntity.extend({
 		
 		this.alwaysUpdate = true;
 		this.collidable = true;
+
     // adjust the bounding box
     //this.updateColRect(-1, x, -1, y);
 		
@@ -59,20 +55,22 @@ game.Player = me.ObjectEntity.extend({
 		me.game.viewport.pos.x = this.pos.x - me.game.viewport.hWidth;
 		me.game.viewport.pos.y = this.pos.y - me.game.viewport.hHeight;
 		
-		var self = this;
-		me.event.subscribe("/mouse/right", function(e){
+
+		/*me.event.subscribe("/mouse/right", function(e){
 			self.target = new me.Vector2d(e.gameX-16, e.gameY-36);
-		});
-		
-		me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
+		});*/
+        var self = this;
+        allUnits.push(self);
+		//me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
   },  
-	
-	
-	mouseDown: function(e){
-		if (e.button == 0)//left click
-			console.log('select me!');			
-			
-	},
+
+
+    move: function(destX, destY) {
+        var self = this;
+        self.target = new me.Vector2d(destX-16, destY-36);
+    },
+
+
 	update : function(){
 		//console.log('me.timer.tick: ', me.timer.tick);
 		//var redraw = false;
@@ -109,7 +107,7 @@ game.Player = me.ObjectEntity.extend({
 		
 		this.updateMovement();
 		return true;
-	},
+	}
 });
 
 // test unit
@@ -117,17 +115,17 @@ game.Marine = me.ObjectEntity.extend({
 	/*
 	 * constructor
 	 */
-	 
-	/* 
+
+	/*
 	 * update position
 	 */
-	
+
 		// check & update movement
-	 
+
 		// check for collision
-		
+
 		// update animation if necessary
-		
+
 		// if animation not updated, return false
 
 });
@@ -142,7 +140,7 @@ game.Zombie = me.ObjectEntity.extend({
     //this.updateColRect(8, 48, -1, 0);
     // set the display to follow our position on both axis
     //me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
-  },
+  }
 	 
 	/* 
 	 * update position
