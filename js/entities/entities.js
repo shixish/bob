@@ -3,7 +3,7 @@
  * organization)
  */
  
-// unit selecter
+// unit selector
 game.squad = me.ObjectEntity.extend({
 	
 });
