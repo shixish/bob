@@ -78,6 +78,10 @@ var game = {
       //me.event.publish("/mouse/left/down", [e]);
 
       //console.log(e);
+      for(var j=0; j<selectedUnits.length; j++)
+      {
+          selectedUnits[j].isSelected = false;
+      }
       selectedUnits = [];
       downPos = {X: e.gameX, Y: e.gameY};
 
@@ -103,7 +107,11 @@ var game = {
                   allUnits[i].pos.x > Math.min(downPos.X, upPos.X) &&
                   allUnits[i].pos.y < Math.max(downPos.Y, upPos.Y) &&
                   allUnits[i].pos.y > Math.min(downPos.Y, upPos.Y))
-              {selectedUnits.push(allUnits[i])}
+              {
+                  allUnits[i].isSelected = true;
+                  allUnits[i].renderable.setCurrentAnimation("stand_down_select");
+                  selectedUnits.push(allUnits[i]);
+              }
           }
           console.log(selectedUnits);
       }

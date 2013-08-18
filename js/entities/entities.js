@@ -37,8 +37,6 @@ game.Player = me.ObjectEntity.extend({
 
     // adjust the bounding box
     //this.updateColRect(-1, x, -1, y);
-	
-        this.isSelected=false;	
 			
 		// Set animations.
 		this.renderable.addAnimation("walk_down",   [ 0, 8,  16, 24 ]);
@@ -73,8 +71,9 @@ game.Player = me.ObjectEntity.extend({
         var self = this;
         allUnits.push(self);
 		//me.input.registerPointerEvent('mousedown', this.collisionBox, this.mouseDown.bind(this));
-  },
-    /* TODO merge this functionality
+        self.isSelected=false;
+    },
+    /*
      mouseDown: function(e){
      if (e.button == 0)//left click
      {
@@ -100,7 +99,8 @@ game.Player = me.ObjectEntity.extend({
 		//	me.game.viewport.pos.y = this.pos.y - me.game.viewport.hHeight;
 		//	redraw = true;
 		//}
-		
+		var self = this;
+
 		var dist_x = this.target.x - this.pos.x, dist_y = this.target.y - this.pos.y;
 		var abs_dist_x = Math.abs(dist_x), abs_dist_y = Math.abs(dist_y);
 		if (dist_x == 0 && dist_y == 0) {
@@ -113,7 +113,7 @@ game.Player = me.ObjectEntity.extend({
 			else
 				this.direction = 'left';
 			
-			if (isSelected==false) {
+			if (self.isSelected==false) {
 				this.renderable.setCurrentAnimation("walk_"+this.direction);
 			}
 			else
@@ -130,14 +130,14 @@ game.Player = me.ObjectEntity.extend({
 				this.direction = 'up';
 			
 			
-			if (isSelected==false) {
+			if (self.isSelected==false) {
 				this.renderable.setCurrentAnimation("walk_"+this.direction);
 			}
 			else
 			{
 				this.renderable.setCurrentAnimation("walk_"+this.direction+"_select");
 			}			
-		}else if (isSelected==false){
+		}else if (self.isSelected==false){
 			this.renderable.setCurrentAnimation("stand_"+this.direction);
 		}
 		else
@@ -152,7 +152,7 @@ game.Player = me.ObjectEntity.extend({
 		this.parent();
 		
 		// check for collision
-    var res = me.game.collide(this);
+    //var res = me.game.collide(this);
 		//console.log('res: ', res);
 		return true;
 	}
