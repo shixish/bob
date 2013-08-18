@@ -119,9 +119,6 @@ game.resources = {
 
     /* 2-channel audio. Usually music. */
     "bgm" : [
-        "bells",
-        "del_erad",
-        "pink_and_lively",
-        "random_and_cheap"
+        "zombie_snare"        
     ]
 };
