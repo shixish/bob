@@ -170,7 +170,6 @@
     <property name="spritewidth" value="31"/>
    </properties>
   </object>
-  <object name="StartLocation" x="3008" y="3328" width="32" height="32"/>
  </objectgroup>
  <layer name="overlay" width="128" height="128">
   <data encoding="base64">

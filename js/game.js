@@ -33,7 +33,6 @@ var game = {
     
     // add our player entity in the entity pool
     me.entityPool.add("Player", game.Player);
-    me.entityPool.add("StartLocation", game.StartLocation);
     //// add our object entities in the entity pool
     //me.entityPool.add("mainPlayer", game.PlayerEntity);
     //me.entityPool.add("CoinEntity", game.CoinEntity);
