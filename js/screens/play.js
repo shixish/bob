@@ -7,7 +7,7 @@ game.PlayScreen = me.ScreenObject.extend( {
 	 */
 	onResetEvent: function() {
 		// load a level
-		me.levelDirector.loadLevel("area01");
+		me.levelDirector.loadLevel("earth");
 	},
 	/*
 	 * action to perform when game is finished (state change)
