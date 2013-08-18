@@ -53,7 +53,12 @@ var game = {
         
         me.input.registerMouseEvent('mousedown', me.game.viewport, this.mouseDown.bind(this));
         me.input.registerMouseEvent('mousemove', me.game.viewport, this.mouseMove.bind(this));
-
+        
+        var canvas = me.video.getScreenCanvas();
+        canvas.addEventListener('contextmenu', function(e){
+            e.preventDefault();
+        });
+        
         // Set a callback to run when loading is complete.
         me.loader.onload = this.loaded.bind(this);
         this.loadResources();
