@@ -165,7 +165,7 @@
   <object name="Player" type="solid" x="2976" y="3296" width="32" height="32">
    <properties>
     <property name="compose" value="[{&quot;name&quot;:&quot;shadow&quot;,&quot;class&quot;:&quot;game.Shadow&quot;,&quot;image&quot;:&quot;char_shadow&quot;,&quot;spritewidth&quot;:18,&quot;spriteheight&quot;:9},{&quot;name&quot;:&quot;rachel&quot;},{&quot;name&quot;:&quot;eyes&quot;,&quot;class&quot;:&quot;game.BlinkingEyes&quot;,&quot;image&quot;:&quot;rachel_eyes&quot;,&quot;spritewidth&quot;:17,&quot;spriteheight&quot;:6,&quot;offsetx&quot;:6,&quot;offsety&quot;:18}]"/>
-    <property name="image" value="rachel"/>
+    <property name="image" value="rachel2"/>
     <property name="spriteheight" value="36"/>
     <property name="spritewidth" value="31"/>
     <property name="type" value="solid"/>

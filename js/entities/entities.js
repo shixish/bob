@@ -41,18 +41,29 @@ game.Player = me.ObjectEntity.extend({
 		this.collidable = true;
     // adjust the bounding box
     //this.updateColRect(-1, x, -1, y);
-		
+	
+	var isSelected=false;	
 			
 		// Set animations.
-		this.renderable.addAnimation("walk_down",   [ 0, 4,  8, 12 ]);
-		this.renderable.addAnimation("walk_left",   [ 1, 5,  9, 13 ]);
-		this.renderable.addAnimation("walk_up",     [ 2, 6, 10, 14 ]);
-		this.renderable.addAnimation("walk_right",  [ 3, 7, 11, 15 ]);
+		this.renderable.addAnimation("walk_down",   [ 0, 8,  16, 24 ]);
+		this.renderable.addAnimation("walk_left",   [ 1, 9,  17, 25 ]);
+		this.renderable.addAnimation("walk_up",     [ 2, 10, 18, 26 ]);
+		this.renderable.addAnimation("walk_right",  [ 3, 11, 19, 27 ]);
+		
+		this.renderable.addAnimation("walk_down_select",   [ 16, 20,  24, 28 ]);
+		this.renderable.addAnimation("walk_left_select",   [ 17, 21,  25, 29 ]);
+		this.renderable.addAnimation("walk_up_select",     [ 18, 22, 26, 30 ]);
+		this.renderable.addAnimation("walk_right_select",  [ 19, 23, 27, 31 ]);
 		
 		this.renderable.addAnimation("stand_down",  [ 0 ]);
 		this.renderable.addAnimation("stand_left",  [ 1 ]);
 		this.renderable.addAnimation("stand_up",    [ 2 ]);
 		this.renderable.addAnimation("stand_right", [ 3 ]);
+		
+		this.renderable.addAnimation("stand_down_select",  [ 16 ]);
+		this.renderable.addAnimation("stand_left_select",  [ 17 ]);
+		this.renderable.addAnimation("stand_up_select",    [ 18 ]);
+		this.renderable.addAnimation("stand_right_select", [ 19 ]);
 		
 		this.renderable.setCurrentAnimation("walk_right");
 		//me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -70,8 +81,13 @@ game.Player = me.ObjectEntity.extend({
 	
 	mouseDown: function(e){
 		if (e.button == 0)//left click
-			console.log('select me!');			
-			
+		{
+			console.log('select me!');
+			this.renderable.setCurrentAnimation("stand_down_select");
+			isSelected=true;
+		}
+		
+		
 	},
 	update : function(){
 		//console.log('me.timer.tick: ', me.timer.tick);
@@ -93,16 +109,40 @@ game.Player = me.ObjectEntity.extend({
 				this.direction = 'right';
 			else
 				this.direction = 'left';
-			this.renderable.setCurrentAnimation("walk_"+this.direction);
+			
+			if (isSelected==false) {
+				this.renderable.setCurrentAnimation("walk_"+this.direction);
+			}
+			else
+			{
+				this.renderable.setCurrentAnimation("walk_"+this.direction+"_select");
+			}
+			
+			
+			
 		}else if (abs_dist_y > 0){
 			if (dist_y > 0)
 				this.direction = 'down';
 			else
 				this.direction = 'up';
-			this.renderable.setCurrentAnimation("walk_"+this.direction);
-		}else{
+			
+			
+			if (isSelected==false) {
+				this.renderable.setCurrentAnimation("walk_"+this.direction);
+			}
+			else
+			{
+				this.renderable.setCurrentAnimation("walk_"+this.direction+"_select");
+			}			
+		}else if (isSelected==false){
 			this.renderable.setCurrentAnimation("stand_"+this.direction);
 		}
+		else
+		{
+			this.renderable.setCurrentAnimation("stand_"+this.direction+"_select");
+		}
+		
+		
 		
 		this.vel.x = dist_x;
 		this.vel.y = dist_y;

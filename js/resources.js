@@ -10,7 +10,7 @@ game.resources = {
         "logo",
 
         // Characters
-        "rachel",
+        "rachel2",
         "rachel_eyes",
         "abi",
         "abi_eyes",
