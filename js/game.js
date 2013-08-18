@@ -1,8 +1,30 @@
-
+var width = 100, height = 100;
 var game = {
 	// Run on page load.
 	"onload" : function () {
-    
+    // Initialize the video.
+    if (!me.video.init("screen", width, height)) {
+      alert("Your browser does not support HTML5 canvas.");
+      return;
+    }
+
+    // Initialize the audio.
+    me.audio.init("mp3,ogg");
+
+    // Key bindings.
+    me.input.bindKey(me.input.KEY.UP,       "up");
+    me.input.bindKey(me.input.KEY.LEFT,     "left");
+    me.input.bindKey(me.input.KEY.DOWN,     "down");
+    me.input.bindKey(me.input.KEY.RIGHT,    "right");
+    me.input.bindKey(me.input.KEY.W,        "up");
+    me.input.bindKey(me.input.KEY.A,        "left");
+    me.input.bindKey(me.input.KEY.S,        "down");
+    me.input.bindKey(me.input.KEY.D,        "right");
+    me.input.bindKey(me.input.KEY.ENTER,    "action", true);
+    me.input.bindKey(me.input.KEY.SPACE,    "action", true);
+    me.input.bindKey(me.input.KEY.SHIFT,    "shift");
+    me.input.bindKey(me.input.KEY.Z,        "attack", true);
+    me.input.bindKey(me.input.KEY.ESC,      "skip", true);
 	},
 	// Run when loaded.
 	"loaded" : function () {
