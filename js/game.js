@@ -59,6 +59,7 @@ var game = {
             e.preventDefault();
         });
         
+
         // Set a callback to run when loading is complete.
         me.loader.onload = this.loaded.bind(this);
         this.loadResources();
